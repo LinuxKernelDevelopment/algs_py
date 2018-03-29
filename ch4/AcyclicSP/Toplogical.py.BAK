@@ -1,0 +1,44 @@
+#!/home/hmsjwzb/python/bin/python3.5
+
+class Topological:
+    def __init__(self, G):
+        if type(G) is EdgeWeightedDigraph:
+            init_from_EdgeWeightedDigraph(self, G)
+        else:
+            init_from_Graph(self, G)
+
+    def init_from_Graph(self, G):
+        finder = DirectedCycle(G)
+        if not finder.hasCycle():
+            dfs = DepthFirstOrder(G)
+            self.order = dfs.reversePost()
+            self.rank = [0] * G.Vertex()
+            i = 0
+            for v in order:
+                self.rank[v] = i
+                i += 1
+
+    def init_from_EdgeWeightedDigraph(self, G):
+        finder = EdgeWeightedDirectedCycle(G)
+        if not finder.hasCycle():
+            dfs = DepthFirstOrder(G)
+            order = dfs.reversePost()
+
+    def order(self):
+        return self.order
+
+    def hasOrder(self):
+        return self.order != None
+
+    def isDAG(self):
+        return self.hasOrder()
+
+    def rank(self, v):
+        self.validateVertex(v)
+        if self.hasOrder(): return self.rank[v]
+        else:               return -1
+
+    def validateVertex(self, v):
+        V = len(self.rank)
+        if v < 0 or v >= V:
+            raise ValueError("vertex %d is not between 0 and %d" % (v, V-1))
