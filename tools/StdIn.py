@@ -6,9 +6,14 @@ import sys
 class StdIn:
     def __init__(self):
         tmp = input()
-        self.items = tmp.split()
-        self.stop = False
-        print(self.items)
+        self.items = []
+        while True:
+            self.items += tmp.split()
+            self.stop = False
+            try:
+                tmp = input()
+            except EOFError:
+                break
 
     def isEmpty(self):
         #print(self.stop)

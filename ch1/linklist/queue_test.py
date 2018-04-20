@@ -1,6 +1,7 @@
 #!/home/hmsjwzb/python/bin/python3
 import sys
 from Queue import Queue
+sys.path.append('/home/hmsjwzb/intel/Algorithm/tools')
 from StdIn import StdIn
 if __name__ == '__main__':
     q = Queue()
